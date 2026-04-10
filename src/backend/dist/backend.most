@@ -1,0 +1,84 @@
+// Version: 3.0.0
+type List__415060402<T> = List__790383201<T>;
+type List__790383201<T> =
+  {
+    var blockIndex : Nat__490723111;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__490723111
+  };
+type MeterId__78501930 = Nat;
+type Meter__232540197 =
+  {
+    createdAt : Timestamp__301639476;
+    disco : Text;
+    displayName : Text;
+    id : MeterId__78501930;
+    meterNumber : Text;
+    owner : UserId__158757552
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type OldMeterId__80734834 = Nat;
+type OldMeter__376661411 =
+  {
+    createdAt : OldTimestamp__27916213;
+    displayName : Text;
+    id : OldMeterId__80734834;
+    meterNumber : Text;
+    owner : OldUserId__580276348
+  };
+type OldOrderStatus__13175761 = {#completed; #failed; #pending};
+type OldTimestamp__27916213 = Int;
+type OldTransactionId__836182752 = Nat;
+type OldTransaction__963748675 =
+  {
+    createdAt : OldTimestamp__27916213;
+    creditAmount : Nat;
+    id : OldTransactionId__836182752;
+    meterNumber : Text;
+    owner : OldUserId__580276348;
+    paymentIntentId : Text;
+    status : OldOrderStatus__13175761;
+    vendingToken : ?Text
+  };
+type OldUserId__580276348 = Principal;
+type OrderStatus__370610062 = {#completed; #failed; #pending};
+type Timestamp__301639476 = Int;
+type TransactionId__138870153 = Nat;
+type Transaction__728646163 =
+  {
+    createdAt : Timestamp__301639476;
+    creditAmount : Nat;
+    customerName : Text;
+    disco : Text;
+    id : TransactionId__138870153;
+    meterNumber : Text;
+    owner : UserId__158757552;
+    paymentMethod : Text;
+    status : OrderStatus__370610062;
+    token : ?Text
+  };
+type UserId__158757552 = Principal;
+actor ({
+  stable var adminPrincipal : ?Principal;
+  in meters : List__415060402<OldMeter__376661411>;
+  stable var nextMeterId : Nat;
+  stable var nextTransactionId : Nat;
+  in transactions : List__415060402<OldTransaction__963748675>
+}, {
+  stable var adminPrincipal : ?Principal;
+  stable meters :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Meter__232540197]];
+      var elementIndex : Nat__490723111
+    };
+  stable var nextMeterId : Nat;
+  stable var nextTransactionId : Nat;
+  stable transactions :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Transaction__728646163]];
+      var elementIndex : Nat__490723111
+    }
+}) ;

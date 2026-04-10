@@ -1,0 +1,77 @@
+type ValidatedMeter = 
+ record {
+   customerName: text;
+   disco: text;
+   meterNumber: text;
+ };
+type UserId = principal;
+type TransactionId = nat;
+type Transaction = 
+ record {
+   createdAt: Timestamp;
+   creditAmount: nat;
+   customerName: text;
+   disco: text;
+   id: TransactionId;
+   meterNumber: text;
+   owner: UserId;
+   paymentMethod: text;
+   status: OrderStatus;
+   token: opt text;
+ };
+type TokenResult = 
+ record {
+   token: text;
+   transactionId: TransactionId;
+   units: float64;
+ };
+type Timestamp = int;
+type OrderStatus = 
+ variant {
+   completed;
+   failed;
+   pending;
+ };
+type MeterId = nat;
+type Meter = 
+ record {
+   createdAt: Timestamp;
+   disco: text;
+   displayName: text;
+   id: MeterId;
+   meterNumber: text;
+   owner: UserId;
+ };
+type AdminStats = 
+ record {
+   recentTransactions: vec Transaction;
+   totalCount: nat;
+   totalRevenue: nat;
+ };
+service : {
+  addMeter: (meterNumber: text, displayName: text, disco: text) -> (Meter);
+  completeOrder: (txId: TransactionId, token: text, units: float64) ->
+   (opt Transaction);
+  createOrder: (meterNumber: text, disco: text, customerName: text,
+   creditAmount: nat, paymentMethod: text) -> (Transaction);
+  deleteMeter: (meterId: MeterId) -> (bool);
+  failOrder: (txId: TransactionId) -> (opt Transaction);
+  getAdmin: () -> (opt principal) query;
+  getAdminStats: () -> (AdminStats);
+  getAllTransactions: () -> (vec Transaction);
+  getMeter: (meterId: MeterId) -> (opt Meter) query;
+  getMeters: () -> (vec Meter) query;
+  getMyTransactions: () -> (vec Transaction) query;
+  getTransaction: (txId: TransactionId) -> (opt Transaction) query;
+  purchaseToken: (meterNumber: text, disco: text, amount: nat, customerName:
+   text, paymentMethod: text) -> (variant {
+                                    err: text;
+                                    ok: TokenResult;
+                                  });
+  setAdmin: (p: principal) -> ();
+  validateMeter: (meterNumber: text, disco: text) ->
+   (variant {
+      err: text;
+      ok: ValidatedMeter;
+    });
+}

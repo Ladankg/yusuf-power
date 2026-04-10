@@ -1,0 +1,25 @@
+{
+  "overview": "Yusuf Power is a Nigerian electricity vending platform where users can buy prepaid electricity tokens by entering their meter number, selecting their DisCo, and paying via Paystack. The app validates meters, displays customer details, and delivers a 20-digit vending token with copy and WhatsApp sharing.",
+  "features": [
+    "Multi-step electricity purchase flow (meter input → validation → confirmation → payment → token)",
+    "DisCo selection dropdown with all major Nigerian utility providers",
+    "Paystack payment integration placeholder",
+    "20-digit token display with copy-to-clipboard and WhatsApp sharing",
+    "Transaction history with full receipt view",
+    "Admin dashboard showing revenue and recent transactions",
+    "Secure backend API placeholders for Vtpass meter validation and token purchase",
+    "Mobile-first green and white Nigerian design",
+    "Internet Identity authentication"
+  ],
+  "category": "productivity",
+  "tags": [
+    "electricity",
+    "vending",
+    "nigeria",
+    "paystack",
+    "vtpass",
+    "mobile",
+    "utility"
+  ],
+  "last_updated": "2026-04-10T11:47:19.135Z"
+}

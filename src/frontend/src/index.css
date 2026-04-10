@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "General Sans";
+    --font-body: "DM Sans";
+    --font-mono: "Geist Mono";
+    --radius: 0.5rem;
+
+    /* Nigerian green primary */
+    --background: 0.99 0.002 0;
+    --foreground: 0.15 0.01 210;
+    --card: 1.0 0 0;
+    --card-foreground: 0.15 0.01 210;
+    --popover: 1.0 0 0;
+    --popover-foreground: 0.15 0.01 210;
+
+    --primary: 0.48 0.12 170;
+    --primary-foreground: 0.98 0.002 0;
+
+    --secondary: 0.94 0.008 170;
+    --secondary-foreground: 0.35 0.06 170;
+    --muted: 0.96 0.004 0;
+    --muted-foreground: 0.52 0.01 210;
+
+    --accent: 0.68 0.18 55;
+    --accent-foreground: 0.18 0.01 55;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.91 0.005 0;
+    --input: 0.95 0.005 0;
+    --ring: 0.48 0.12 170;
+
+    --chart-1: 0.68 0.2 40;
+    --chart-2: 0.48 0.12 170;
+    --chart-3: 0.58 0.15 60;
+    --chart-4: 0.72 0.12 80;
+    --chart-5: 0.65 0.16 30;
+
+    --sidebar: 1.0 0 0;
+    --sidebar-foreground: 0.15 0.01 210;
+    --sidebar-primary: 0.48 0.12 170;
+    --sidebar-primary-foreground: 0.98 0.002 0;
+    --sidebar-accent: 0.95 0.005 0;
+    --sidebar-accent-foreground: 0.25 0.01 210;
+    --sidebar-border: 0.91 0.005 0;
+    --sidebar-ring: 0.48 0.12 170;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display), system-ui, sans-serif;
+  }
+  .font-body {
+    font-family: var(--font-body), system-ui, sans-serif;
+  }
+  .font-mono {
+    font-family: var(--font-mono), "Courier New", monospace;
+  }
+
+  .transition-smooth {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Token display: monospace hero for vending tokens */
+  .token-display {
+    @apply bg-primary/5 border border-primary/20 rounded-xl p-5 font-mono text-xl tracking-[0.25em] text-primary break-all text-center;
+  }
+
+  /* Success entrance animation */
+  .success-pulse {
+    animation: success-pulse 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  @keyframes success-pulse {
+    0% {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Fade-in-up for section entrances */
+  .fade-up {
+    animation: fade-up 0.4s ease-out both;
+  }
+
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .success-pulse {
+      animation: none;
+    }
+    .fade-up {
+      animation: none;
+    }
+  }
+
+  /* Card hover lift */
+  .card-lift {
+    @apply transition-smooth hover:shadow-md hover:-translate-y-0.5;
+  }
+
+  /* Status badge variants */
+  .badge-success {
+    @apply bg-primary/10 text-primary border border-primary/20 text-xs font-medium px-2.5 py-0.5 rounded-full;
+  }
+  .badge-pending {
+    @apply bg-accent/10 text-accent-foreground border border-accent/20 text-xs font-medium px-2.5 py-0.5 rounded-full;
+  }
+  .badge-failed {
+    @apply bg-destructive/10 text-destructive border border-destructive/20 text-xs font-medium px-2.5 py-0.5 rounded-full;
+  }
+
+  /* Section zone backgrounds */
+  .zone-alt {
+    @apply bg-muted/30;
+  }
+
+  /* Green header gradient for Yusuf Power */
+  .header-green {
+    background: linear-gradient(
+      135deg,
+      oklch(0.48 0.12 170) 0%,
+      oklch(0.42 0.13 170) 100%
+    );
+  }
+
+  /* Step indicator */
+  .step-active {
+    @apply bg-primary text-primary-foreground;
+  }
+  .step-inactive {
+    @apply bg-muted text-muted-foreground;
+  }
+  .step-complete {
+    @apply bg-primary/20 text-primary;
+  }
+}
